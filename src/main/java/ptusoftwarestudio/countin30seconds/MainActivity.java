@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } while (numberValue1 == rightAnswer);
         do {
             numberValue2 = getRandomAnswer();
-        } while((numberValue1 == rightAnswer) || (numberValue2 == rightAnswer));
+        } while((numberValue2 == numberValue1) || (numberValue2 == rightAnswer));
         buttonId = random.nextInt(2);
         switch(buttonId) {
             case 0:
