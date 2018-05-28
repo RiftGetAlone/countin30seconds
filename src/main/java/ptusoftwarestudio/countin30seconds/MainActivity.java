@@ -132,7 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setNewGame(String exampleText, String underExampleText, String answerText) {
         min = START_MIN;
         max = START_MAX;
-
+	  currentScore = 0;
+		
         bestScoreView.setText(String.format(getString(R.string.best_score), loadBestScore()));
         currentScoreView.setText(getString(R.string.current_score_0));
         button1.setVisibility(View.INVISIBLE);
