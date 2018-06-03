@@ -1,7 +1,6 @@
 package ptusoftwarestudio.countin30seconds;
 
 import java.util.Random;
-
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int min;
     private int max;
 
-    final Random random = new Random();
+    private final Random random = new Random();
     private final int START_MIN = 4;
     private final int START_MAX = 14;
     private final int START_PROGRESS_BAR = 30;
@@ -34,8 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
-        @Override
-        public void run() {
+        @Override public void run() {
             int timeLeft = ((int)((System.currentTimeMillis() - startTime) / 1000)) % 60;
             progressBar.setProgress(START_PROGRESS_BAR - timeLeft);
             if (START_PROGRESS_BAR - timeLeft <= 0) {
@@ -45,8 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
@@ -74,8 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setNewGame(getString(R.string.tap_to_start), "", "");
     }
 
-    @Override
-    public void onClick(View v) {
+    @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.textExample:
                 startNewGame();
@@ -110,8 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onPause() {
+    @Override public void onPause() {
         super.onPause();
         timerHandler.removeCallbacks(timerRunnable);
         gameOver(getString(R.string.time_is_over));
@@ -132,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setNewGame(String exampleText, String underExampleText, String answerText) {
         min = START_MIN;
         max = START_MAX;
-	  currentScore = 0;
+	    currentScore = 0;
 		
         bestScoreView.setText(String.format(getString(R.string.best_score), loadBestScore()));
         currentScoreView.setText(getString(R.string.current_score_0));
@@ -186,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setNewValues() {
-        int buttonId;
         int firstNumber;
         int secondNumber;
         int numberValue1;
@@ -202,8 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         do {
             numberValue2 = getRandomAnswer();
         } while((numberValue2 == numberValue1) || (numberValue2 == rightAnswer));
-        buttonId = random.nextInt(2);
-        switch(buttonId) {
+        switch(random.nextInt(2)) {
             case 0:
                 button1.setText(Integer.toString(rightAnswer));
                 button2.setText(Integer.toString(numberValue1));
